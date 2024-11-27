@@ -6,12 +6,12 @@ commands:
   postLocation:
     description: locationReminder command
     usage: /postLocation <locationName>
-    aliases: [pl]
+    aliases: [ploc]
   listLocation:
     description: locationReminder command
     usage: /listLocation
     aliases: [ll]
-  deleteLocaiton:
+  deleteLocation:
     description: locationReminder command
     usage: /deleteLocation
     aliases: [dl]
