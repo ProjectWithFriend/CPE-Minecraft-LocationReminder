@@ -1,0 +1,9 @@
+name: locationReminder
+version: '1.0-SNAPSHOT'
+main: me.aujung.locationReminder.LocationReminder
+api-version: '1.21'
+commands:
+  addLocation:
+    description: locationReminder command
+    usage: /addlocation
+    aliases: [lr]
