@@ -2,36 +2,22 @@ package me.aujung.locationReminder.commands;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import me.aujung.locationReminder.utils.ReadLocationData;
+import me.aujung.locationReminder.utils.WriteLocationData;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.UUID;
 
-import static org.bukkit.Bukkit.getServer;
 
 public class AddLocation implements CommandExecutor {
-
-    private final File locationFile;
-    private final Gson gson;
-
-    public AddLocation(File locationFile) {
-        this.locationFile = locationFile;
-        this.gson = new GsonBuilder().setPrettyPrinting().create();
-    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
@@ -76,7 +62,7 @@ public class AddLocation implements CommandExecutor {
             userData.add(locationName, locationObject);
             jsonData.add(userId, userData);
 
-            writeLocationData(jsonData);
+            WriteLocationData.write(jsonData);
 
             String actionName = isLocationNameExisting ? "updated" : "saved";
 
@@ -99,21 +85,5 @@ public class AddLocation implements CommandExecutor {
         }
 
         return true;
-    }
-
-    private JsonObject readLocationData() throws IOException {
-        if (!locationFile.exists() || locationFile.length() == 0) {
-            return new JsonObject(); // Return an empty JSON object if the file doesn't exist or is empty
-        }
-
-        try (FileReader reader = new FileReader(locationFile)) {
-            return gson.fromJson(reader, JsonObject.class);
-        }
-    }
-
-    private void writeLocationData(JsonObject jsonData) throws IOException {
-        try (FileWriter writer = new FileWriter(locationFile)) {
-            gson.toJson(jsonData, writer); // Pretty-print JSON
-        }
     }
 }
