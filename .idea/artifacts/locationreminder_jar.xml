@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="locationreminder:jar">
-    <output-path>$PROJECT_DIR$/out</output-path>
+    <output-path>$PROJECT_DIR$/../mc-server/plugins</output-path>
     <root id="archive" name="locationreminder.jar">
       <element id="module-output" name="locationreminder" />
     </root>
