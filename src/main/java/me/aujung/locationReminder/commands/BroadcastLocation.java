@@ -8,8 +8,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.io.IOException;
-
 public class BroadcastLocation implements CommandExecutor {
 
     @Override
@@ -20,9 +18,10 @@ public class BroadcastLocation implements CommandExecutor {
             return true;
         }
 
-        String locationName = args[0];
-
         Player player = (Player) sender;
+
+        // Check if a location name is provided, otherwise set a default name
+        String locationName = args.length > 0 ? args[0] : "Current Location";
 
         String formattedMessage = getBroadcastingMessage(player, locationName);
 
@@ -45,7 +44,7 @@ public class BroadcastLocation implements CommandExecutor {
         return String.format(
                 ChatColor.AQUA + "%s's " + ChatColor.GOLD + "location " + ChatColor.GOLD + ": " +
                         ChatColor.GREEN + "(%s)" + ChatColor.WHITE + " in " +
-                        ChatColor.YELLOW + "%s" + ChatColor.WHITE + " at " +
+                        ChatColor.YELLOW + "%s" + ChatColor.WHITE + "\nat " +
                         ChatColor.AQUA + "X: %.3f, Y: %.3f, Z: %.3f",
                 username, locationName, worldName, xPos, yPos, zPos
         );
