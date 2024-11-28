@@ -1,6 +1,7 @@
 package me.aujung.locationReminder;
 
 import me.aujung.locationReminder.commands.AddLocation;
+import me.aujung.locationReminder.commands.BroadcastLocation;
 import me.aujung.locationReminder.commands.DeleteLocation;
 import me.aujung.locationReminder.commands.ListLocation;
 import me.aujung.locationReminder.utils.ReadLocationData;
@@ -38,6 +39,7 @@ public final class LocationReminder extends JavaPlugin {
         Objects.requireNonNull(getCommand("postLocation")).setExecutor(new AddLocation());
         Objects.requireNonNull(getCommand("deleteLocation")).setExecutor(new DeleteLocation());
         Objects.requireNonNull(getCommand("listLocation")).setExecutor(new ListLocation());
+        Objects.requireNonNull(getCommand("broadcastLocation")).setExecutor(new BroadcastLocation());
     }
 
     @Override
