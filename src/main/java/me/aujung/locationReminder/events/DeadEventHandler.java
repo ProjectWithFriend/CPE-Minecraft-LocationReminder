@@ -18,18 +18,24 @@ public class DeadEventHandler implements Listener {
         Location deathLocation = deadPlayer.getLocation();
 
         // Format the death location coordinates
-        String locationString = String.format("%s (X: %.2f, Y: %.2f, Z: %.2f)",
+        String locationString = String.format("§a%s §7(X: §b%.2f§7, Y: §b%.2f§7, Z: §b%.2f§7)",
                 deathLocation.getWorld().getName(),
                 deathLocation.getX(),
                 deathLocation.getY(),
                 deathLocation.getZ()
         );
 
-        // Broadcast the death message to all online players
-        String deathMessage = String.format("§c%s has died at %s!",
+        // Get the death message or reason (optional)
+        String deathReason = event.getDeathMessage();
+
+        // Format the broadcast message
+        String deathMessage = String.format("§c§l%s §6has died at §e%s! §7(Reason: §f%s§7)",
                 deadPlayer.getName(),
-                locationString
+                locationString,
+                deathReason != null ? deathReason : "Skill issue"
         );
+
+        // Broadcast the death message to all online players
         Bukkit.broadcastMessage(deathMessage);
     }
 }
